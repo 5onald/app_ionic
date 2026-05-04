@@ -1,0 +1,7 @@
+{
+  "name": "carrerasApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
