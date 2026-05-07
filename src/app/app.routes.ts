@@ -12,10 +12,12 @@ export const routes: Routes = [
   },
   {
     path: 'carreras',
-    loadComponent: () => import('./carreras/carreras.page').then( m => m.CarrerasPage)
+    loadComponent: () =>
+      import('./carreras/carreras.page').then((m) => m.CarrerasPage),
   },
   {
     path: 'beneficios',
-    loadComponent: () => import('./beneficios/beneficios.page').then( m => m.BeneficiosPage)
+    loadComponent: () =>
+      import('./beneficios/beneficios.page').then((m) => m.BeneficiosPage),
   },
 ];

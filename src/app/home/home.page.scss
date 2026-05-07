@@ -1,3 +1,14 @@
+ion-content {
+  --background: var(--color-body);
+}
+
+ion-header ion-toolbar {
+  --background: var(--color-header);
+  --color: var(--color-text-light);
+  text-align: center;
+  font-size: 1rem;
+}
+
 #container {
   text-align: center;
   position: absolute;
@@ -24,3 +35,11 @@
 #container a {
   text-decoration: none;
 }
+
+ion-footer ion-toolbar {
+  --background: var(--color-footer);
+  --color: var(--color-text-light);
+  text-align: center;
+  font-size: 1rem;
+}
+

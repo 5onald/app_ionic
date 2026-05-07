@@ -1,20 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Carreras Costa Rica
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content" side="start">
+  <ion-header class="header">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>Secciones</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item button routerLink="/carreras/carreras.page.html">
+          <ion-label>Carreras</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-item button routterLink="/beneficios/beneficios.page.html">
+          <ion-label>Futuro laboral</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true" class="header">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Ingeniería en Desarrollo de Software</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <h1>Content</h1>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>© 2026 Alexander Zambrana. Todos los derechos reservados</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+</div>
