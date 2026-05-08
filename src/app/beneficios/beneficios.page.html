@@ -1,13 +1,158 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>beneficios</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+<div class="beneficios-contenedor">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">beneficios</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- ─── Hero decorativo ─────────────────────────────────────────── -->
+  <div class="hero-wrapper">
+    <div class="hero-ornament">
+      <span class="ornament-line"></span>
+      <span class="ornament-diamond">◆</span>
+      <span class="ornament-line"></span>
+    </div>
+    <h1 class="hero-title">Sectores y Salarios por Lenguaje</h1>
+    <p class="hero-sub">
+      Descubre qué industrias puedes trabajar y verás cuánto puedes ganar
+      según el sector que quieras aprender.
+    </p>
+    <div class="hero-ornament hero-ornament--bottom">
+      <span class="ornament-line"></span>
+      <span class="ornament-badge">2026</span>
+      <span class="ornament-line"></span>
+    </div>
+  </div>
+
+  <!-- ─── Métricas ──────────────────────────────────────────────────── -->
+  <div class="summary-grid">
+    <div class="metric-card">
+      <span class="metric-num">{{ lenguajes.length }}</span>
+      <span class="metric-label">Lenguajes</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-num">${{ salarioPromedio }}k</span>
+      <span class="metric-label">Salario promedio</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-num">20+</span>
+      <span class="metric-label">Sectores</span>
+    </div>
+  </div>
+
+  <!-- ─── Sección de Beneficios ─────────────────────────────────────── -->
+  <div class="beneficios-section">
+    <div class="section-header">
+      <span class="section-eyebrow">¿Por qué aprender?</span>
+      <h2 class="section-heading">Beneficios de dominar estos lenguajes</h2>
+    </div>
+
+    <div class="beneficios-grid">
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon-wrap" style="background: #eef2ff;">
+          <ion-icon name="trending-up-outline" style="color: #4f46e5;"></ion-icon>
+        </div>
+        <h3>Alta demanda laboral</h3>
+        <p>Los desarrolladores con estos lenguajes están entre los perfiles más buscados del mercado. La tasa de empleo supera el 95% en la mayoría de regiones.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon-wrap" style="background: #fef3c7;">
+          <ion-icon name="cash-outline" style="color: #d97706;"></ion-icon>
+        </div>
+        <h3>Salarios competitivos</h3>
+        <p>Los salarios promedian entre $60k y $140k USD anuales. A medida que acumulas experiencia, las compensaciones crecen exponencialmente.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon-wrap" style="background: #d1fae5;">
+          <ion-icon name="globe-outline" style="color: #059669;"></ion-icon>
+        </div>
+        <h3>Trabajo remoto global</h3>
+        <p>Trabaja desde cualquier lugar del mundo. Empresas de todos los continentes contratan talento remoto con estos stacks tecnológicos.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon-wrap" style="background: #fce7f3;">
+          <ion-icon name="rocket-outline" style="color: #db2777;"></ion-icon>
+        </div>
+        <h3>Crecimiento profesional</h3>
+        <p>Abre puertas hacia roles de Tech Lead, Arquitecto de Software o CTO. Cada lenguaje es un peldaño hacia posiciones de mayor responsabilidad.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon-wrap" style="background: #ede9fe;">
+          <ion-icon name="construct-outline" style="color: #7c3aed;"></ion-icon>
+        </div>
+        <h3>Ecosistemas maduros</h3>
+        <p>Frameworks, librerías y comunidades activas aceleran tu desarrollo. No construyes desde cero; te apoyás en décadas de conocimiento acumulado.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon-wrap" style="background: #e0f2fe;">
+          <ion-icon name="people-outline" style="color: #0284c7;"></ion-icon>
+        </div>
+        <h3>Comunidad y aprendizaje</h3>
+        <p>Millones de desarrolladores comparten código, tutoriales y soluciones. Stack Overflow, GitHub y Discord son tus aliados permanentes.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="filters">
+    <button
+      *ngFor="let filtro of filtros"
+      class="filter-btn"
+      [class.active]="filtroActivo === filtro.valor"
+      (click)="aplicarFiltro(filtro.valor)">
+      {{ filtro.etiqueta }}
+    </button>
+  </div>
+
+  <!-- ─── Cards de lenguajes ─────────────────────────────────────────── -->
+  <div class="cards-grid">
+    <div class="lang-card" *ngFor="let lang of lenguajesFiltrados">
+
+      <div class="card-accent" [style.background]="lang.accentColor"></div>
+
+      <div class="card-header">
+        <div class="card-icon" [style.background]="lang.accentColor + '22'">
+          <img [src]="lang.logo" [alt]="lang.nombre" class="lang-logo" />
+        </div>
+        <div>
+          <div class="card-title">{{ lang.nombre }}</div>
+          <div class="card-subtitle">{{ lang.sectores.length }} sectores disponibles</div>
+        </div>
+      </div>
+
+      <div class="salary-row">
+        <span class="salary-label">Salario promedio anual</span>
+        <span class="salary-value">${{ lang.salarioPromedio }}k <small>USD</small></span>
+      </div>
+
+      <div class="bar-wrap">
+        <div
+          class="bar-fill"
+          [style.width.%]="calcularPorcentaje(lang.salarioPromedio)"
+          [style.background]="lang.accentColor">
+        </div>
+      </div>
+      <div class="bar-labels">
+        <span>Mín ${{ lang.salarioMin }}k</span>
+        <span>Máx ${{ lang.salarioMax }}k</span>
+      </div>
+
+      <div class="section-title">Sectores principales</div>
+      <ul class="sector-list">
+        <li *ngFor="let sector of lang.sectores">
+          <span class="sector-dot" [style.background]="lang.accentColor"></span>
+          {{ sector }}
+        </li>
+      </ul>
+
+      <div class="tags">
+        <span class="tag" *ngFor="let tag of lang.tags">{{ tag }}</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 </ion-content>
