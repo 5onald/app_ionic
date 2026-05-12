@@ -1,13 +1,231 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>carreras</ion-title>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <span class="brand">
+        <ion-icon name="code-slash-outline"></ion-icon>
+        Carreras Tecnologicas
+      </span>
+    </ion-title>
+
+    <ion-buttons slot="end" class="nav-buttons">
+      <ion-button routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+        <ion-icon slot="start" name="home-outline"></ion-icon>
+        Inicio
+      </ion-button>
+      <ion-button routerLink="/carreras" routerLinkActive="active-link">
+        <ion-icon slot="start" name="school-outline"></ion-icon>
+        Carreras
+      </ion-button>
+      <ion-button routerLink="/beneficios" routerLinkActive="active-link">
+        <ion-icon slot="start" name="briefcase-outline"></ion-icon>
+        Beneficios
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" class="nav-menu-mobile">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">carreras</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="page-content">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <ion-chip color="light" class="hero-chip">
+        <ion-icon name="rocket-outline"></ion-icon>
+        <ion-label>Educacion en tecnologia</ion-label>
+      </ion-chip>
+      <h1 class="career-title">{{ current.name }}</h1>
+      <p class="career-tagline">{{ current.tagline }}</p>
+
+      <div class="hero-meta">
+        <ion-chip>
+          <ion-icon name="time-outline"></ion-icon>
+          <ion-label>{{ current.duration }}</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="desktop-outline"></ion-icon>
+          <ion-label>{{ current.modality.join(' / ') }}</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+  </section>
+
+  <section class="selector ion-padding-horizontal">
+    <ion-segment
+      scrollable="true"
+      [value]="selectedIndex"
+      (ionChange)="onSegmentChange($any($event).detail.value)"
+    >
+      <ion-segment-button *ngFor="let c of careers; let i = index" [value]="i">
+        <ion-label>{{ c.name }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </section>
+
+  <section class="carousel-section ion-padding-horizontal">
+    <div class="carousel">
+      <div
+        class="carousel-track"
+        [style.transform]="'translateX(-' + (slideIndex * 100) + '%)'"
+      >
+        <div class="carousel-slide" *ngFor="let img of current.images; let i = index">
+          <img [src]="img" [alt]="current.name + ' imagen ' + (i + 1)" loading="lazy" />
+          <div class="carousel-caption">
+            <span>{{ current.name }}</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-btn prev" type="button" (click)="prevSlide()" aria-label="Anterior">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <button class="carousel-btn next" type="button" (click)="nextSlide()" aria-label="Siguiente">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <div class="carousel-dots">
+        <span
+          *ngFor="let img of current.images; let i = index"
+          class="dot"
+          [class.active]="i === slideIndex"
+          (click)="goToSlide(i)"
+        ></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section ion-padding">
+    <h2 class="section-title">Conoce el mundo tech</h2>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/aBVGKoNZQUw"
+        title="Que es una carrera tecnologica"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </section>
+
+  <section class="info-section ion-padding">
+    <h2 class="section-title">Detalles de la carrera</h2>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card class="info-card">
+            <ion-card-header>
+              <div class="icon-badge primary">
+                <ion-icon name="layers-outline"></ion-icon>
+              </div>
+              <ion-card-title>Que abarca</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>{{ current.scope }}</ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card class="info-card">
+            <ion-card-header>
+              <div class="icon-badge success">
+                <ion-icon name="trending-up-outline"></ion-icon>
+              </div>
+              <ion-card-title>Demanda</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>{{ current.demand }}</ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card class="info-card">
+            <ion-card-header>
+              <div class="icon-badge warning">
+                <ion-icon name="time-outline"></ion-icon>
+              </div>
+              <ion-card-title>Duracion</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>{{ current.duration }}</ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card class="info-card">
+            <ion-card-header>
+              <div class="icon-badge tertiary">
+                <ion-icon name="ribbon-outline"></ion-icon>
+              </div>
+              <ion-card-title>Grados academicos</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <div class="chip-list">
+                <ion-chip *ngFor="let g of current.degrees" color="tertiary">
+                  <ion-label>{{ g }}</ion-label>
+                </ion-chip>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card class="info-card">
+            <ion-card-header>
+              <div class="icon-badge secondary">
+                <ion-icon name="desktop-outline"></ion-icon>
+              </div>
+              <ion-card-title>Modalidad</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <div class="chip-list">
+                <ion-chip *ngFor="let m of current.modality" color="secondary">
+                  <ion-label>{{ m }}</ion-label>
+                </ion-chip>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card class="info-card cta-card" routerLink="/beneficios">
+            <ion-card-header>
+              <div class="icon-badge danger">
+                <ion-icon name="briefcase-outline"></ion-icon>
+              </div>
+              <ion-card-title>Salida laboral</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Conoce sectores, salarios y beneficios al ejercer esta carrera.
+              <div class="cta-link">
+                Ver beneficios
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
 </ion-content>
+
+<ion-footer class="ion-no-border app-footer">
+  <ion-toolbar color="primary">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <strong>Carreras Tecnologicas CR</strong>
+        <span>Proyecto academico 2026</span>
+      </div>
+      <div class="footer-col links">
+        <a routerLink="/home">Inicio</a>
+        <a routerLink="/carreras">Carreras</a>
+        <a routerLink="/beneficios">Beneficios</a>
+      </div>
+      <div class="footer-col social">
+        <ion-icon name="logo-github"></ion-icon>
+        <ion-icon name="logo-linkedin"></ion-icon>
+        <ion-icon name="globe-outline"></ion-icon>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>
