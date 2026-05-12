@@ -32,10 +32,6 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <ion-chip color="light" class="hero-chip">
-        <ion-icon name="rocket-outline"></ion-icon>
-        <ion-label>Educacion en tecnologia</ion-label>
-      </ion-chip>
       <h1 class="career-title">{{ current.name }}</h1>
       <p class="career-tagline">{{ current.tagline }}</p>
 
@@ -96,15 +92,22 @@
     </div>
   </section>
 
+  <section class="overview-section ion-padding">
+    <h2 class="section-title">Informacion general</h2>
+    <div class="overview-card">
+      <p>{{ current.overview }}</p>
+    </div>
+  </section>
+
   <section class="info-section ion-padding">
     <h2 class="section-title">Detalles de la carrera</h2>
 
     <ion-grid>
       <ion-row>
-        <ion-col size="12" size-md="6" size-lg="4">
+        <ion-col size="12" size-md="6">
           <ion-card class="info-card">
             <ion-card-header>
-              <div class="icon-badge primary">
+              <div class="icon-badge">
                 <ion-icon name="layers-outline"></ion-icon>
               </div>
               <ion-card-title>Que abarca</ion-card-title>
@@ -113,10 +116,10 @@
           </ion-card>
         </ion-col>
 
-        <ion-col size="12" size-md="6" size-lg="4">
+        <ion-col size="12" size-md="6">
           <ion-card class="info-card">
             <ion-card-header>
-              <div class="icon-badge success">
+              <div class="icon-badge">
                 <ion-icon name="trending-up-outline"></ion-icon>
               </div>
               <ion-card-title>Demanda</ion-card-title>
@@ -125,10 +128,10 @@
           </ion-card>
         </ion-col>
 
-        <ion-col size="12" size-md="6" size-lg="4">
+        <ion-col size="12" size-md="6">
           <ion-card class="info-card">
             <ion-card-header>
-              <div class="icon-badge warning">
+              <div class="icon-badge">
                 <ion-icon name="time-outline"></ion-icon>
               </div>
               <ion-card-title>Duracion</ion-card-title>
@@ -137,46 +140,42 @@
           </ion-card>
         </ion-col>
 
-        <ion-col size="12" size-md="6" size-lg="4">
+        <ion-col size="12" size-md="6">
           <ion-card class="info-card">
             <ion-card-header>
-              <div class="icon-badge tertiary">
+              <div class="icon-badge">
                 <ion-icon name="ribbon-outline"></ion-icon>
               </div>
               <ion-card-title>Grados academicos</ion-card-title>
             </ion-card-header>
             <ion-card-content>
               <div class="chip-list">
-                <ion-chip *ngFor="let g of current.degrees" color="tertiary">
-                  <ion-label>{{ g }}</ion-label>
-                </ion-chip>
+                <span class="info-chip" *ngFor="let g of current.degrees">{{ g }}</span>
               </div>
             </ion-card-content>
           </ion-card>
         </ion-col>
 
-        <ion-col size="12" size-md="6" size-lg="4">
+        <ion-col size="12" size-md="6">
           <ion-card class="info-card">
             <ion-card-header>
-              <div class="icon-badge secondary">
+              <div class="icon-badge">
                 <ion-icon name="desktop-outline"></ion-icon>
               </div>
               <ion-card-title>Modalidad</ion-card-title>
             </ion-card-header>
             <ion-card-content>
               <div class="chip-list">
-                <ion-chip *ngFor="let m of current.modality" color="secondary">
-                  <ion-label>{{ m }}</ion-label>
-                </ion-chip>
+                <span class="info-chip" *ngFor="let m of current.modality">{{ m }}</span>
               </div>
             </ion-card-content>
           </ion-card>
         </ion-col>
 
-        <ion-col size="12" size-md="6" size-lg="4">
+        <ion-col size="12" size-md="6">
           <ion-card class="info-card cta-card" routerLink="/beneficios">
             <ion-card-header>
-              <div class="icon-badge danger">
+              <div class="icon-badge">
                 <ion-icon name="briefcase-outline"></ion-icon>
               </div>
               <ion-card-title>Salida laboral</ion-card-title>

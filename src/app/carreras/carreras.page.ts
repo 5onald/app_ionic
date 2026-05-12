@@ -45,6 +45,7 @@ import {
 interface Career {
   name: string;
   tagline: string;
+  overview: string;
   images: string[];
   scope: string;
   demand: string;
@@ -87,8 +88,27 @@ interface Career {
 export class CarrerasPage implements OnInit, OnDestroy {
   careers: Career[] = [
     {
+      name: 'Ingenieria en Desarrollo de Software',
+      tagline: 'Especializacion en construir productos de software escalables y mantenibles.',
+      overview:
+        'La Ingenieria en Desarrollo de Software se enfoca en el ciclo completo de creacion de aplicaciones: desde el analisis de requisitos hasta el despliegue y mantenimiento. El profesional aprende a trabajar en equipos agiles, dominar lenguajes modernos, construir interfaces, disenar APIs robustas y aplicar buenas practicas de calidad, seguridad y arquitectura de software. Es una de las carreras con mayor oferta laboral remota y crecimiento sostenido a nivel global.',
+      images: [
+        'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=1200&q=80',
+      ],
+      scope:
+        'Ingenieria de requisitos, frontend, backend, DevOps, calidad de software, metodologias agiles y cloud.',
+      demand: 'Una de las profesiones con mayor crecimiento global y oferta laboral remota.',
+      duration: '4 anos (8 semestres).',
+      degrees: ['Bachillerato Universitario', 'Licenciatura'],
+      modality: ['Presencial', 'Virtual'],
+    },
+    {
       name: 'Ingenieria en Sistemas Computacionales',
       tagline: 'Disena, construye y opera soluciones de software de nivel empresarial.',
+      overview:
+        'Carrera amplia que combina fundamentos de computacion, electronica, redes y administracion de sistemas. Forma profesionales capaces de disenar arquitecturas tecnologicas completas, integrar hardware y software, gestionar infraestructura empresarial y liderar proyectos de transformacion digital. Su perfil generalista permite trabajar en multiples sectores tech.',
       images: [
         'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
@@ -103,23 +123,10 @@ export class CarrerasPage implements OnInit, OnDestroy {
       modality: ['Presencial', 'Virtual', 'Hibrida'],
     },
     {
-      name: 'Ingenieria en Desarrollo de Software',
-      tagline: 'Especializacion en construir productos de software escalables y mantenibles.',
-      images: [
-        'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=1200&q=80',
-      ],
-      scope:
-        'Ingenieria de requisitos, frontend, backend, DevOps, calidad de software, metodologias agiles y cloud.',
-      demand: 'Una de las profesiones con mayor crecimiento global y oferta laboral remota.',
-      duration: '4 anos (8 semestres).',
-      degrees: ['Bachillerato Universitario', 'Licenciatura'],
-      modality: ['Presencial', 'Virtual'],
-    },
-    {
       name: 'Ingenieria en Ciberseguridad',
       tagline: 'Protege la informacion y la infraestructura digital de las organizaciones.',
+      overview:
+        'Forma profesionales especializados en proteger sistemas, redes y datos frente a amenazas digitales. Combina conocimientos de programacion, redes, criptografia y normativa internacional. El egresado puede desempenarse en areas como hacking etico, analisis forense, gobernanza de seguridad, respuesta a incidentes y auditoria de sistemas.',
       images: [
         'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=1200&q=80',
@@ -135,6 +142,8 @@ export class CarrerasPage implements OnInit, OnDestroy {
     {
       name: 'Ciencia de Datos e Inteligencia Artificial',
       tagline: 'Convierte datos en decisiones usando estadistica, machine learning y big data.',
+      overview:
+        'Carrera multidisciplinaria que integra matematica, estadistica, programacion y conocimiento de negocio para extraer valor de grandes volumenes de datos. El profesional disena modelos predictivos, sistemas de inteligencia artificial, soluciones de big data y herramientas de visualizacion que apoyan la toma de decisiones estrategicas en empresas y organismos publicos.',
       images: [
         'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=1200&q=80',
